@@ -1,4 +1,4 @@
-export default function getInfo(req, res) {
+function getInfo(req, res) {
   res.status(200).json({
     ok: true,
     author: {
@@ -18,3 +18,5 @@ export default function getInfo(req, res) {
     },
   });
 }
+
+module.exports = { getInfo };
