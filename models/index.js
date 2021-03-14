@@ -1,5 +1,6 @@
 const { MongoClient } = require('mongodb');
 const glob = require('glob');
+require('dotenv').config();
 
 const { NODE_ENV, USERNAME, PASS } = process.env;
 
@@ -14,7 +15,9 @@ const collections = {};
 const databases = {};
 
 const getMongoConnectionString = connection =>
-  NODE_ENV === 'production' ? `${USERNAME}:${PASS}@${database[connection][NODE_ENV]}` : database[connection][NODE_ENV];
+  NODE_ENV === 'production'
+    ? `mongodb://${USERNAME}:${PASS}@${database[connection][NODE_ENV]}`
+    : database[connection][NODE_ENV];
 
 function bootCollections() {
   const files = glob.sync(`${__dirname}/*.js`).filter(file => !file.endsWith('index.js') && !file.endsWith('spec.js'));
