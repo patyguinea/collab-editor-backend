@@ -1,6 +1,8 @@
 const { MongoClient } = require('mongodb');
 const glob = require('glob');
 
+const { NODE_ENV, USERNAME, PASS } = process.env;
+
 const database = {
   ces: {
     development: 'mongodb://localhost:27017/ces',
@@ -11,7 +13,8 @@ const database = {
 const collections = {};
 const databases = {};
 
-const getMongoConnectionString = connection => database[connection][process.env.NODE_ENV];
+const getMongoConnectionString = connection =>
+  NODE_ENV === 'production' ? `${USERNAME}:${PASS}@${database[connection][NODE_ENV]}` : database[connection][NODE_ENV];
 
 function bootCollections() {
   const files = glob.sync(`${__dirname}/*.js`).filter(file => !file.endsWith('index.js') && !file.endsWith('spec.js'));
