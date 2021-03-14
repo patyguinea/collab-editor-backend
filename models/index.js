@@ -3,7 +3,7 @@ const glob = require('glob');
 
 const database = {
   ces: {
-    development: process.env.ORMONGO_URL || 'mongodb://localhost:27017/ces',
+    development: process.env.ORMONGO_RS_URL || 'mongodb://localhost:27017/ces',
   },
 };
 
