@@ -15,7 +15,8 @@ const addOneConversation = (req, res, next) => {
     .catch(next);
 };
 
-const getConversations = (req, res, next) => req.collections.conversations
+const getConversations = (req, res, next) =>
+  req.collections.conversations
     .getConversations()
     .then(conversations => {
       res.status(200).json({

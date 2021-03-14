@@ -7,8 +7,8 @@ function cors(req, res, next) {
     'http://localhost:3002',
     'https://app.ava.me',
     'https://collab-editor-frontend.herokuapp.com',
-    'https://collab-editor-frontend.herokuapp.com/conversations',
   ];
+
   if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
